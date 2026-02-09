@@ -67,6 +67,25 @@ const generateId = () => {
     return String(Math.floor(Math.random() * 1000000000))
 }
 
+app.put('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const body = request.body
+
+  const personIndex = persons.findIndex(person => person.id === id)
+  if (personIndex === -1) {
+    return response.status(404).json({ error: 'person not found' })
+  }
+
+  const updatedPerson = {
+    ...persons[personIndex],
+    name: body.name,
+    number: body.number
+  }
+
+  persons[personIndex] = updatedPerson
+  response.json(updatedPerson)
+})
+
 app.post('/api/persons', (request, response) => {
   const body = request.body
 

@@ -77,29 +77,21 @@ app.put('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
-
-  if (!body.name) {
-    return response.status(400).json({ 
-        error: 'name missing' 
-    })
-  }
-
-  if (!body.number) {
-    return response.status(400).json({ 
-        error: 'number missing' 
-    })
-  }
 
   const person = new Person ({
     name: body.name,
     number: body.number
   })
 
-  person.save().then(saved => {
-    response.json(saved)
-  })
+  person.save()
+    .then(saved => {
+      response.json(saved)
+    })
+    .catch(error => {
+      next(error)
+    })
 })
 
 const unknownEndpoint = (request, response) => {

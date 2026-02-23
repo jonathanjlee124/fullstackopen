@@ -1,0 +1,34 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "author": "Matti Luukkainen",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development node --watch index.js",
+    "test": "cross-env  NODE_ENV=test node --test",
+    "build:ui": "rm -rf dist && cd ../part2 && npm run build && cp -r dist ../part3",
+    "depoly:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.8.0",
+    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
+    "supertest": "^7.2.2"
+  }
+}

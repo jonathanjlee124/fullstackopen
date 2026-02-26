@@ -1,0 +1,14 @@
+.env
+node_modules/
+dist/
+coverage/
+*.log
+*.env
+*.local
+*.cache
+*.tmp
+*.tsbuildinfo
+*.eslintcache
+.DS_Store
+.vscode/
+.idea/
